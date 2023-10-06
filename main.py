@@ -60,6 +60,20 @@ async def getReply(text,model):
             return s
         except:
             return "调用文心一言失败，请检查网络或重试"
+    elif model=="rwkv":
+        try:
+            with open('config/config.yaml', 'r', encoding='utf-8') as f:
+                result = yaml.load(f.read(), Loader=yaml.FullLoader)
+            rwkvPort=result.get("rwkvPort")
+            url = "http://127.0.0.1:"+rwkvPort+"/chat/completions"
+            async with httpx.AsyncClient(timeout=100) as client:
+                data = {"messages": [{"role": "user", "content": text}], "model": "rwkv", "stream": False,
+                        "max_tokens": 1000, "temperature": 1.2, "top_p": 0.5, "presence_penalty": 0.4,
+                        "frequency_penalty": 0.4}
+                r = await client.post(url, json=data)
+                return r.json().get('choices')[0].get("message").get("content")
+        except:
+            return "无法连接到本地rwkv语音模型，请检查端口配置"
     else:
         return "暂未支持该模型，请等待更新"
 def glmReply(text):
