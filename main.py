@@ -72,7 +72,7 @@ def glmReply(text):
         str1="清理完成"
     else:
 
-        with open('config.yaml', 'r', encoding='utf-8') as f:
+        with open('config/config.yaml', 'r', encoding='utf-8') as f:
             result = yaml.load(f.read(), Loader=yaml.FullLoader)
         zhipuai.api_key = result.get("apiKey")
         model1=result.get("model")
