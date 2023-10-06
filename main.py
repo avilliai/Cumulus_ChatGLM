@@ -138,6 +138,6 @@ def glmReply(text):
     return str1
 
 if __name__ == '__main__':
-    os.system("web\chatGLM.html")
+    os.system("web\glm.html")
     app.run(debug=True,host='127.0.0.1', port=9081)
 
