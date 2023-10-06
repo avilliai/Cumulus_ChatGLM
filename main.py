@@ -67,7 +67,7 @@ def glmReply(text):
     print("user:" + text)
     if text=="/clear":
         prompt=[{"content": "你好","role": "user"},{"content": "早上好，今天过得怎么样","role": "assistant"}]
-        with open('data.yaml', 'w', encoding="utf-8") as file:
+        with open('data/data.yaml', 'w', encoding="utf-8") as file:
             yaml.dump(prompt, file, allow_unicode=True)
         str1="清理完成"
     else:
@@ -77,7 +77,7 @@ def glmReply(text):
         zhipuai.api_key = result.get("apiKey")
         model1=result.get("model")
         bot_info=result.get("bot_info")
-        with open('data.yaml', 'r', encoding='utf-8') as f:
+        with open('data/data.yaml', 'r', encoding='utf-8') as f:
             result1 = yaml.load(f.read(), Loader=yaml.FullLoader)
         prompt = result1
         prompt.append({"role": "user","content":text})
@@ -133,7 +133,7 @@ def glmReply(text):
         #print(str1)
         prompt.append({"role": "assistant","content":str1})
     print("chatGLM:"+str1)
-    with open('data.yaml', 'w', encoding="utf-8") as file:
+    with open('data/data.yaml', 'w', encoding="utf-8") as file:
         yaml.dump(prompt, file, allow_unicode=True)
     return str1
 

@@ -2,5 +2,3 @@
   role: user
 - content: 早上好，今天过得怎么样
   role: assistant
-- content: 早上好
-  role: user
