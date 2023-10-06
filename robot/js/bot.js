@@ -1,6 +1,7 @@
 
 var text = $("#f-left");
 text.focus();
+
 function action() 
 {
 	if(text.val()==null||text.val()=="")
@@ -8,6 +9,13 @@ function action()
 		text.focus();
 		return;
 	}
+	// 使用querySelector方法获取选中的单选按钮对象
+	var radio = document.querySelector("input[name='contact']:checked");
+// 获取选中的value值
+	var value = radio.value;
+// 打印或返回value值
+	console.log(value);
+// 或者 return value;
 
 	$(".b-body").append("<div class='mWord'><span></span><p>" + text.val() + "</p></div>");
 	$(".b-body").scrollTop(10000000);
@@ -15,7 +23,7 @@ function action()
 	var args= {
 			type : "get",
 			url:"http://localhost:9081",
-			data : {"text" : text.val()},
+			data : {"text" : text.val(),"model":radio.value},
 			success : function(redata)
 			{
 				var my_data = $.parseJSON(redata)
@@ -50,6 +58,7 @@ $("#btn").click(function()
 {
 	action();
 });
+
 $(document).keydown(function(event)
 {
 	if(event.keyCode==13)

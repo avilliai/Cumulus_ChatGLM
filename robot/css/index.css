@@ -1,0 +1,256 @@
+@CHARSET "UTF-8";
+a:link {
+	color: #fff;
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+	color: #fff;
+}
+a:hover {
+	text-decoration: none;
+	color: #fff;
+}
+a:active {
+	text-decoration: none;
+	color: #fff;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-size: 12px;
+	font-family: "微软雅黑";
+	background: url(../img/bg.jpg) no-repeat;
+	width: 100%;
+	height: 100vh;
+	background-size: cover;
+}
+
+#top {
+	width: 10%;
+	height: 450px;
+	background: rgba(15, 25, 50, 0.3);
+	color: #fff;
+	position: absolute;
+	line-height: 60px;
+	text-align: left;
+	font-size: 15px;
+}
+
+#box {
+	width: 800px;
+	height: 600px;
+	background: rgba(255, 255, 255, .5);
+	margin: 100px auto 0;
+}
+
+.b-head {
+	width: 100%;
+	height: 60px;
+	background-color: lightslategrey;
+}
+
+.h-img {
+	position: absolute;
+	margin: 0 20px;
+	float: left;
+	user-select: none;
+	top: 280px;
+	left: -100px;
+}
+
+.h_span {
+	color: #fff;
+	font-size: 18px;
+	line-height: 60px;
+	float: left;
+	user-select: none;
+	cursor: default;
+}
+
+.b-body {
+	width: 100%;
+	height: 420px;
+	overflow: auto;
+	margin: 20px 0;
+}
+
+.rotWord,.mWord{
+	width: 100%;
+	margin-top: 10px;
+	overflow: hidden;
+}
+
+.rotWord span {
+	background: url(../img/rot.png);
+	height: 40px;
+	width: 40px;
+	margin-left: 20px;
+	float: left;
+}
+
+.rotWord p {
+	word-break: break-all;
+	top: 4px;
+	float: left;
+	color: #fff;
+	font-size: 14px;
+	margin-left: 10px;
+	padding: 10px;
+	line-height: 24px;
+	background: rgba(0, 0, 255, .5);
+	border-radius: 6px;
+	max-width: 220px;
+}
+
+.mWord span {
+	background: url(../img/my.png);
+	height: 40px;
+	width: 40px;
+	float: right;
+	margin-right: 20px;
+}
+
+.mWord p {
+	word-break: break-all;
+	top: 2px;
+	float: right;
+	color: #fff;
+	font-size: 14px;
+	margin-right: 10px;
+	padding: 10px;
+	line-height: 24px;
+	background: dimgrey;
+	border-radius: 6px;
+	max-width: 220px;
+}
+
+.b-footer {
+	width: 760px;
+	height: 60px;
+	margin: 0 20px;
+	font-size: 16px;
+	color: #666666;
+}
+#f-left {
+	padding-left: 20px;
+	outline: none;
+	overflow: hidden;
+	width: 620px;
+	height: 60px;
+	float: left;
+	background: rgba(0, 0, 0, .1);
+	font-size: 18px;
+	border: none;
+	border-radius: 5px;
+}
+
+#btn {
+	width: 100px;
+	height: 60px;
+	background: #666666;
+	float: right;
+	cursor: pointer;
+	text-align: center;
+	line-height: 60px;
+	font-size: 18px;
+	color: #fff;
+	user-select: none;
+	border-radius: 10px;
+}
+#btn1 {
+	width: 100px;
+	height: 60px;
+	background: #666666;
+	float: right;
+	cursor: pointer;
+	text-align: center;
+	line-height: 60px;
+	font-size: 18px;
+	color: #fff;
+	user-select: none;
+	border-radius: 10px;
+}
+label{
+	line-height: 20px;
+	display: inline-block;
+	margin-left: 5px;
+	margin-right:15px;
+	color: #777;
+}
+.radio_type{
+	width: 20px;
+	height: 20px;
+	appearance: none;
+	position: relative;
+}
+.radio_type:before{
+	content: '';
+	width: 20px;
+	height: 20px;
+	border: 1px solid #7d7d7d;
+	display: inline-block;
+	border-radius: 50%;
+	vertical-align: middle;
+}
+.radio_type:checked:before{
+	content: '';
+	width: 20px;
+	height: 20px;
+	border: 1px solid #c59c5a;
+	background:#c59c5a;
+	display: inline-block;
+	border-radius: 50%;
+	vertical-align: middle;
+}
+.radio_type:checked:after{
+	content: '';
+	width: 10px;
+	height:5px;
+	border: 2px solid white;
+	border-top: transparent;
+	border-right: transparent;
+	text-align: center;
+	display: block;
+	position: absolute;
+	top: 6px;
+	left:5px;
+	vertical-align: middle;
+	transform: rotate(-45deg);
+}
+.radio_type:checked+label{
+	color: #c59c5a;
+}
+.btn {
+	background: #eb94d0;
+	/* 创建渐变 */
+	background-image: -webkit-linear-gradient(top, #eb94d0, #2079b0);
+	background-image: -moz-linear-gradient(top, #eb94d0, #2079b0);
+	background-image: -ms-linear-gradient(top, #eb94d0, #2079b0);
+	background-image: -o-linear-gradient(top, #eb94d0, #2079b0);
+	background-image: linear-gradient(to bottom, #eb94d0, #2079b0);
+	/* 给按钮添加圆角 */
+	-webkit-border-radius: 28px;
+	-moz-border-radius: 28px;
+	border-radius: 28px;
+	font-family: Arial;
+	color: #fafafa;
+	font-size: 15px;
+	padding: 10px;
+	text-decoration: none;
+	left: 5px;
+}
+/* 悬停样式 */
+.btn:hover {
+	background: #2079b0;
+	background-image: -webkit-linear-gradient(top, #2079b0, #eb94d0);
+	background-image: -moz-linear-gradient(top, #2079b0, #eb94d0);
+	background-image: -ms-linear-gradient(top, #2079b0, #eb94d0);
+	background-image: -o-linear-gradient(top, #2079b0, #eb94d0);
+	background-image: linear-gradient(to bottom, #2079b0, #eb94d0);
+	text-decoration: none;
+}
