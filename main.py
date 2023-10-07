@@ -26,8 +26,8 @@ def synthesize():
     return {"data": {"info":{"text":s1}}}
 
 async def getReply(text,model):
-    if model=="chatglm":
-        return glmReply(text)
+    if "glm" in model:
+        return glmReply(model,text)
     elif model=="gpt":
         try:
             url = "https://api.lolimi.cn/API/AI/mfcat3.5.php?sx=你是一个可爱萝莉&msg="+text+"&type=json"
@@ -76,7 +76,7 @@ async def getReply(text,model):
             return "无法连接到本地rwkv语音模型，请检查端口配置"
     else:
         return "暂未支持该模型，请等待更新"
-def glmReply(text):
+def glmReply(model,text):
 
     print("user:" + text)
     if text=="/clear":
@@ -89,7 +89,7 @@ def glmReply(text):
         with open('config/config.yaml', 'r', encoding='utf-8') as f:
             result = yaml.load(f.read(), Loader=yaml.FullLoader)
         zhipuai.api_key = result.get("apiKey")
-        model1=result.get("model")
+        model1=model
         bot_info=result.get("bot_info")
         with open('data/data.yaml', 'r', encoding='utf-8') as f:
             result1 = yaml.load(f.read(), Loader=yaml.FullLoader)
