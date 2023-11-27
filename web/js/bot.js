@@ -22,7 +22,7 @@ function action()
 	
 	var args= {
 			type : "get",
-			url:"http://localhost:9081",
+			url:"http://localhost:9088",
 			data : {"text" : text.val(),"model":radio.value},
 			success : function(redata)
 			{

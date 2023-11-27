@@ -2,6 +2,7 @@
 import asyncio
 import os
 import threading
+import webbrowser
 from asyncio import sleep
 
 
@@ -22,20 +23,61 @@ def synthesize():
     text=request.values.get("text")
     model = request.values.get("model")
     # 解析请求中的参数
+    print(text)
     s1=asyncio.run(getReply(text,model))
     return {"data": {"info":{"text":s1}}}
 
 async def getReply(text,model):
+    if text=="/refresh":
+        with open('data/id.yaml', 'r', encoding='utf-8') as f:
+            result0 = yaml.load(f.read(), Loader=yaml.FullLoader)
+        result0["gpt1"]=None
+        result0["gpt2"] = None
+        with open('data/id.yaml', 'w', encoding="utf-8") as file:
+            yaml.dump(result0, file, allow_unicode=True)
+
     if "glm" in model:
         return glmReply(model,text)
-    elif model=="gpt":
+    elif model=="gpt1":
         try:
-            url = "https://api.lolimi.cn/API/AI/mfcat3.5.php?sx=你是一个可爱萝莉&msg="+text+"&type=json"
-            async with httpx.AsyncClient(timeout=40) as client:
-                # 用get方法发送请求
-                response = await client.get(url=url)
-            s=response.json().get("data")
-            return s
+            with open('data/id.yaml', 'r', encoding='utf-8') as f:
+                result2 = yaml.load(f.read(), Loader=yaml.FullLoader)
+            try:
+                id=result2.get("gpt1")
+            except:
+                id=None
+            if id != None:
+                url = "https://api.vkeys.cn/API/gpt?msg=" + text + "&session_id=" + id
+            else:
+                url = "https://api.vkeys.cn/API/gpt?msg=" + text
+            async with httpx.AsyncClient(timeout=100) as client:  # 100s超时
+                r = await client.get(url)  # 发起请求
+                id=r.json().get("session_id")
+                result2["gpt1"] = id
+                with open('data/id.yaml', 'w', encoding="utf-8") as file:
+                    yaml.dump(result2, file, allow_unicode=True)
+            return r.json().get("data").get("content"),  # 返回结果
+        except:
+            return "无法连接到gpt3.5，请检查网络或重试"
+    elif model=="gpt2":
+        try:
+            with open('data/id.yaml', 'r', encoding='utf-8') as f:
+                result1 = yaml.load(f.read(), Loader=yaml.FullLoader)
+            try:
+                id=result1.get("gpt2")
+            except:
+                id=None
+            if id != None:
+                url = "https://ybapi.cn/API/gpt.php?type=1&msg=" + text + "&id=" + id
+            else:
+                url = "https://ybapi.cn/API/gpt.php?type=1&msg=" + text
+            async with httpx.AsyncClient(timeout=100) as client:  # 100s超时
+                r = await client.get(url)  # 发起请求
+                id=r.json().get("id")
+                result1["gpt2"]=id
+            with open('data/id.yaml', 'w', encoding="utf-8") as file:
+                yaml.dump(result1, file, allow_unicode=True)
+            return r.json().get("text") # 返回结果
 
         except:
             return "无法连接到gpt3.5，请检查网络或重试"
@@ -152,6 +194,7 @@ def glmReply(model,text):
     return str1
 
 if __name__ == '__main__':
-    os.system("web\glm.html")
-    app.run(debug=True,host='127.0.0.1', port=9081)
+
+    webbrowser.open(os.getcwd()+"/web/gml.html")
+    app.run(debug=True,host='127.0.0.1', port=9088)
 
